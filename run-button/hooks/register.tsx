@@ -28,6 +28,12 @@ export const register: Register = on => {
     return next(e)
   })
 
+  on('prompt.submit', async ($, e, next) => {
+    await update($, outcome, () => null)
+
+    return next(e)
+  })
+
   on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
     const list = await read($, pending)
     const done = await read($, outcome)
@@ -65,16 +71,15 @@ export const register: Register = on => {
             />
           </Box>
         ))}
+        <Text> </Text>
         {done === null ? null : (
           <Box flexDirection="column">
             <Text dimColor>
               Exit {done.exitCode} from: {done.command}
             </Text>
             <Text>{done.output === '' ? '(no output)' : done.output}</Text>
-            <Button key="dismiss" label="Dismiss" onPress={() => update($, outcome, () => null)} />
           </Box>
         )}
-        <Text> </Text>
       </Box>
     )
   })
