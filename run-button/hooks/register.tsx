@@ -52,7 +52,8 @@ export const register: Register = on => {
     }
 
     return (
-      <Box flexDirection="column">
+      <Box flexDirection="column" borderStyle="round" paddingX={1}>
+        <Text> </Text>
         {list.map(command => (
           <Box key={`row-${command}`}>
             <Button key={`run-${command}`} label="Run" onPress={() => run(command)} />
@@ -73,6 +74,7 @@ export const register: Register = on => {
             <Button key="dismiss" label="Dismiss" onPress={() => update($, outcome, () => null)} />
           </Box>
         )}
+        <Text> </Text>
       </Box>
     )
   })
