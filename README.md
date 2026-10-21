@@ -2,7 +2,7 @@
 
 Small mods for [Claude Code](https://claude.com/claude-code).
 
-- **run-button**: when Claude suggests a command for you to run, click Run above the prompt instead of copying and pasting it. Failures show up in a red box.
+- **run-button**: when Claude suggests a command for you to run, written as a line starting with `! `, click Run above the prompt instead of copying and pasting it. Failures show up in a red box.
 
 ## run-button
 
