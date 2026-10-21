@@ -40,7 +40,11 @@ export const register: Register = on => {
 
     const run = async (command: string) => {
       await update($, pending, all => all.filter(one => one !== command))
-      const ran = await $.process.run(['bash', '-c', command], { timeoutMs: 120_000 })
+      // setsid drops the controlling terminal, so a command like sudo cannot prompt on /dev/tty and draw over the session
+      const ran = await $.process.run(['setsid', '-w', 'bash', '-c', command], {
+        stdin: '',
+        timeoutMs: 120_000,
+      })
       const output = (ran.stdout + ran.stderr).trim().slice(-MAX_OUTPUT)
       const result: Outcome = { command, exitCode: ran.exitCode, output }
       await update($, outcome, () => result)
