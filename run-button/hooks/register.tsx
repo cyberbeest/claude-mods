@@ -55,11 +55,27 @@ export const register: Register = on => {
       const result: Outcome = { command, exitCode: ran.exitCode, output }
       await update($, outcome, () => result)
       $.ui.toast(`Exit ${ran.exitCode}: ${command.slice(0, 60)}`)
+
+      return ran.exitCode
     }
 
     return (
       <Box flexDirection="column" borderStyle="round" paddingX={1}>
         <Text> </Text>
+        {list.length > 1 ? (
+          <Box flexDirection="column">
+            <Button
+              key="run-all"
+              label="Run all"
+              onPress={async () => {
+                for (const command of list) {
+                  if ((await run(command)) !== 0) break
+                }
+              }}
+            />
+            <Text> </Text>
+          </Box>
+        ) : null}
         {list.map(command => (
           <Box key={`row-${command}`}>
             <Button key={`run-${command}`} label="Run" onPress={() => run(command)} />
