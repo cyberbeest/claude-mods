@@ -88,12 +88,21 @@ export const register: Register = on => {
           </Box>
         ))}
         <Text> </Text>
-        {done === null ? null : (
+        {done === null ? null : done.exitCode === 0 ? (
           <Box flexDirection="column">
-            <Text dimColor>
-              Exit {done.exitCode} from: {done.command}
+            <Text color="success" bold>
+              ✓ Exit 0: {done.command}
             </Text>
             <Text>{done.output === '' ? '(no output)' : done.output}</Text>
+          </Box>
+        ) : (
+          <Box flexDirection="column" borderStyle="bold" borderColor="error" paddingX={1}>
+            <Text color="error" bold inverse>
+              {` ✗ FAILED, exit ${done.exitCode} `}
+            </Text>
+            <Text color="error">{done.command}</Text>
+            <Text> </Text>
+            <Text color="error">{done.output === '' ? '(no output)' : done.output}</Text>
           </Box>
         )}
       </Box>
