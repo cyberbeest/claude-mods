@@ -1,0 +1,11 @@
+{
+  "name": "claude-mods",
+  "owner": { "name": "Cyberbeest" },
+  "plugins": [
+    {
+      "name": "run-button",
+      "source": "./run-button",
+      "description": "Shows a Run button above the prompt for each '! command' line Claude suggests."
+    }
+  ]
+}

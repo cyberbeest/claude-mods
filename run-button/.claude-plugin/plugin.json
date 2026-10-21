@@ -1,0 +1,6 @@
+{
+  "name": "run-button",
+  "version": "0.1.0",
+  "description": "Shows a Run button above the prompt for each '! command' line Claude suggests.",
+  "types": "./types/index.d.ts"
+}
