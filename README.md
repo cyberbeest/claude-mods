@@ -2,6 +2,8 @@
 
 Small mods for [Claude Code](https://claude.com/claude-code).
 
+- **run-button**: when Claude suggests a command for you to run, click Run above the prompt instead of copying and pasting it. Failures show up in a red box.
+
 ## run-button
 
 Turns each `! command` line in Claude's replies into a `[ Run ] [ Skip ]` row above the prompt. Run executes the command with `bash -c` and shows the exit code and output. Nothing runs until you press Run.
